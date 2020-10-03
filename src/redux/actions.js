@@ -14,6 +14,7 @@ export function deleteTodo(todo) {
 export function updateTodo(todo) {
     return {
         type: "UPDATE_TODO",
-        id: todo.id
+        id: todo.id,
+        title: todo.title
     }
 }
