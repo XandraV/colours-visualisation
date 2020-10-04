@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
 import StyledButton from "./StyledButton";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "./redux/actions";
@@ -12,8 +11,9 @@ const StyledTodoTitle = styled.div`
 `;
 
 const StyledInput = styled.input`
+  border-radius: 0.3rem;
+  background: #e6e5e5;
   width: 100%;
-  background: lightgrey;
   font-family: inherit;
   border: 0;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
@@ -49,7 +49,7 @@ export default function ToDoItem({ todo }) {
         align={"right"}
         color={"orange"}
         onClick={() => {
-          dispatch(updateTodo({...todo, title: updatedTitle}));
+          dispatch(updateTodo({ ...todo, title: updatedTitle }));
           if (editable) {
             setUpdatedTitle(updatedTitle);
           }

@@ -9,7 +9,7 @@ const ListWrapper = styled.div`
 
 const ToDoList = () => {
   const todos = useSelector((state) => state.todoReducer);
-  
+
   if (!todos || !todos.length) {
     return <p>No todos</p>;
   }
