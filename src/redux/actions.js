@@ -2,13 +2,14 @@ export function addTodo(todo) {
     return {
         type: "ADD_TODO",
         id: todo.id,
-        title: todo.title,
+        title: todo.title
     }
 }
 export function deleteTodo(todo) {
     return {
         type: "DELETE_TODO",
-        id: todo.id
+        id: todo.id,
+        title: todo.title
     }
 }
 export function updateTodo(todo) {

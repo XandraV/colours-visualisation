@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import StyledButton from "./StyledButton";
 import { useDispatch } from "react-redux";
 import { deleteTodo, updateTodo } from "./redux/actions";
@@ -22,7 +23,7 @@ const StyledInput = styled.input`
 
 export default function ToDoItem({ todo }) {
   const [editable, setEditable] = useState(false);
-  const [title, setTitle] = useState(todo.title);
+  const [updatedTitle, setUpdatedTitle] = useState(todo.title);
   const dispatch = useDispatch();
   return (
     <div style={{ display: "flow-root" }}>
@@ -30,11 +31,11 @@ export default function ToDoItem({ todo }) {
         {editable ? (
           <StyledInput
             type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            onChange={(e) => setUpdatedTitle(e.target.value)}
+            value={updatedTitle}
           />
         ) : (
-          todo.title
+          updatedTitle
         )}
       </StyledTodoTitle>
       <StyledButton
@@ -48,9 +49,9 @@ export default function ToDoItem({ todo }) {
         align={"right"}
         color={"orange"}
         onClick={() => {
-          dispatch(updateTodo({ ...todo, title: title }));
+          dispatch(updateTodo({...todo, title: updatedTitle}));
           if (editable) {
-            setTitle(todo.title);
+            setUpdatedTitle(updatedTitle);
           }
           setEditable(!editable);
         }}

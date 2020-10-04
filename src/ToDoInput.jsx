@@ -15,20 +15,17 @@ const StyledInput = styled.input`
 
 function ToDoInput() {
   const dispatch = useDispatch();
-  const [newTodoTitle, setNewTodoTitle] = useState();
-  const handleChange = (event) => setNewTodoTitle(event.target.value);
+  const [newTitle, setNewTitle] = useState();
+  const handleChange = (event) => setNewTitle(event.target.value);
   const handleClick = () => {
     dispatch(
-      addTodo({
-        id: Math.ceil(Math.random() * 100),
-        title: newTodoTitle,
-      })
+      addTodo({id:Math.ceil(Math.random() * 100), title: newTitle})
     );
-    setNewTodoTitle("");
+    setNewTitle("");
   };
   return (
     <div className="row">
-      <StyledInput onChange={handleChange} type="text" value={newTodoTitle}></StyledInput>
+      <StyledInput onChange={handleChange} type="text" value={newTitle}></StyledInput>
       <StyledButton color={"#9c27b0"} onClick={handleClick}>
         Add
       </StyledButton>

@@ -8,14 +8,16 @@ const ListWrapper = styled.div`
 `;
 
 const ToDoList = () => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state);
+  console.log(todos)
+
   if (!todos || !todos.length) {
     return <p>No todos</p>;
   }
   return (
     <ListWrapper>
       {todos.map((todo) => (
-        <ToDoItem key={todo.id} todo={todo} />
+        <ToDoItem key={todo} todo={todo} />
       ))}
     </ListWrapper>
   );
