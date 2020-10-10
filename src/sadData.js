@@ -1,4 +1,4 @@
-export const sadList = [
+export const sadData = [
   {
     hsl: [
       [30.000000000000007, 0.8571428571428571, 0.3843137254901961, 1],

@@ -1,73 +1,45 @@
 import React from "react";
-import * as Vibrant from "node-vibrant";
-import chroma from "chroma-js";
-import { sadList } from "./data";
-import BubbleChart from "./BubbleChart";
+import { sadData } from "./sadData";
+import BubbleCircleChart from "./BubbleCircleChart";
+import BubbleLineChart from "./BubbleLineChart";
+import getColourObjects from "./getData";
+import getRGBData from "./getRGBData";
 
 function App() {
-  function filterHSLColours(hslColours, borderHue1, borderHue2) {
-    return hslColours.filter((el) => el[0] > borderHue1 && el[0] <= borderHue2);
-  }
+  //   const mList = [
+  //   "https://scontent-lht6-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/103478665_2972432299511895_7968360520928382486_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com&_nc_cat=103&_nc_ohc=9-KS84zpHuIAX_y1fvC&_nc_tp=15&oh=8fc3246480222978e7ac2395becd9d62&oe=5FAA83D7",
+  //   "https://scontent-lhr8-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/85186025_223195675378780_981447206204500726_n.jpg?_nc_ht=scontent-lhr8-1.cdninstagram.com&_nc_cat=104&_nc_ohc=AxZuXKQybN8AX8a_p9B&_nc_tp=15&oh=49d68f91f12cef4399ce25c7ee5a1527&oe=5FA83D48",
+  //   "https://scontent-lhr8-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/87420304_2457378234526991_8448804233122272662_n.jpg?_nc_ht=scontent-lhr8-1.cdninstagram.com&_nc_cat=111&_nc_ohc=wNj2XSeabDEAX9U08wb&_nc_tp=15&oh=6e7af7827a18268c190a26222ddf60a5&oe=5FA9F54E",
+  //   "https://scontent-lht6-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/82433509_2739131769504125_7161811541031103668_n.jpg?_nc_ht=scontent-lht6-1.cdninstagram.com&_nc_cat=105&_nc_ohc=Ccz3fMGnnuEAX-7ufm0&_nc_tp=15&oh=4d579e5cff86c202b67be8d0be932cfc&oe=5FA84503",
+  // ];
+  // const myLabels = ["sinking", "giving up", "drowning", "hopeless"];
 
-  function getRGBAndPopulation(hslList, data) {
-    return data
-      .map((el) => {
-        let res = [];
-        hslList.forEach((grp) => {
-          const index = el.hue.indexOf(grp[0]);
-          if (index > -1)
-            res.push({ rgb: el.rgb[index], population: el.population[index] });
-        });
-        return res;
-      })
-      .flat();
-  }
+  // const myres = getColourObjects(myList, myLabels)
 
-  const hues = sadList
-    .map((el) => el.hue)
-    .flat()
-    .sort((a, b) => a - b);
-
-  const hsls = sadList.map((el) => el.hsl).flat(1);
-
-  const groupBorders = chroma.limits(hues, "e", 5);
-
-  const group1HSL = filterHSLColours(hsls, groupBorders[0], groupBorders[1]);
-  const group2HSL = filterHSLColours(hsls, groupBorders[1], groupBorders[2]);
-  const group3HSL = filterHSLColours(hsls, groupBorders[2], groupBorders[3]);
-  const group4HSL = filterHSLColours(hsls, groupBorders[3], groupBorders[4]);
-  const group5HSL = filterHSLColours(hsls, groupBorders[4], groupBorders[5]);
-
-  const group1RGB = getRGBAndPopulation(group1HSL, sadList);
-  const group2RGB = getRGBAndPopulation(group2HSL, sadList);
-  const group3RGB = getRGBAndPopulation(group3HSL, sadList);
-  const group4RGB = getRGBAndPopulation(group4HSL, sadList);
-  const group5RGB = getRGBAndPopulation(group5HSL, sadList);
-
-   //Bubble data
-
-  const colours = sadList[3].rgb;
-  const population = sadList[3].population;
-  console.log();
-
-  const groupColours = group1RGB
-    .concat(group2RGB, group3RGB, group4RGB, group5RGB)
-    .map((g) => chroma(g.rgb).saturate(3).rgb());
-  const groupPopulations = group1RGB
-    .concat(group2RGB, group3RGB, group4RGB, group5RGB)
-    .map((g) => g.population);
-
-  const average = chroma.average(
-    groupColours.map((c) => `rgb(${c[0]},${c[1]},${c[2]})`),
-    "hsl"
-  );
+  // load data for circular bubble chart
+  const { groupColours, groupPopulations } = getRGBData(sadData);
+  console.log(groupColours);
+  console.log(groupPopulations);
 
   return (
-    <div className="App">
-      <BubbleChart colours={groupColours} population={groupPopulations} />
-      <svg>
-        <circle key={1} cx={`50`} cy={`50`} r={`20`} fill={average} />
-      </svg>
+    <div>
+      <span style={{ float: "left" }}>
+        {sadData.map((painting) => (
+          <BubbleLineChart
+            svgWidth={200}
+            colours={painting.rgb}
+            population={painting.population}
+          />
+        ))}
+      </span>
+      <span>
+        <BubbleCircleChart
+          size={300}
+          colours={groupColours}
+          population={groupPopulations}
+          title={"mood"}
+        />
+      </span>
     </div>
   );
 }
