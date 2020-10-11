@@ -88,5 +88,5 @@ export default function getRGBData(colourObjects) {
     .concat(group2RGB, group3RGB, group4RGB, group5RGB)
     .map((g) => g.population);
 
-  return { groupColours, groupPopulations };
+  return [groupColours, groupPopulations];
 }

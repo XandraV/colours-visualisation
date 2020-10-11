@@ -11,12 +11,12 @@ const getColourObject = (painting, label) => {
     Object.values(palette).map((el, idx) => {
       population.push(el.population);
       rgb.push(el._rgb);
-      hsl.push(
-        chroma(`rgb(${el._rgb[0]}, ${el._rgb[1]}, ${el._rgb[2]})`).hsl()
-      );
-      hue.push(
-        chroma(`rgb(${el._rgb[0]}, ${el._rgb[1]}, ${el._rgb[2]})`).hsl()[0]
-      );
+      // hsl.push(
+      //   chroma(`rgb(${el._rgb[0]}, ${el._rgb[1]}, ${el._rgb[2]})`).hsl()
+      // );
+      // hue.push(
+      //   chroma(`rgb(${el._rgb[0]}, ${el._rgb[1]}, ${el._rgb[2]})`).hsl()[0]
+      // );
     });
     colours["label"] = label;
     colours["population"] = population;

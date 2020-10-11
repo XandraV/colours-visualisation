@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import chroma from "chroma-js";
 import ColourDrop from "./ColourDrop";
 import styled from "styled-components/macro";
 
-const BubbleWrapper = styled.div``;
+const BubbleWrapper = styled.span``;
 
 const BubbleCircleChart = (props) => {
   const size = props.size;
@@ -14,10 +14,9 @@ const BubbleCircleChart = (props) => {
 
   const radius = size / 4;
 
-  const average = chroma.average(
-    props.colours.map((c) => `rgb(${c[0]},${c[1]},${c[2]})`),
-    "hsl"
-  );
+  const top5Population = [...population].sort((a, b) => b - a).slice(0, 5);
+  const top5Colours = top5Population.map((c) => colours[population.indexOf(c)]);
+  const average = chroma.average(top5Colours, "hsl").css();
 
   return (
     <BubbleWrapper>
@@ -48,15 +47,15 @@ const BubbleCircleChart = (props) => {
         ))}
         <text
           key={"title"}
-          x={size / 2} 
-          y={size / 2}
+          x={size / 2}
+          y={size / 1.8}
           style={{
             fontSize: "2rem",
             textAnchor: "middle",
             fill: "grey",
           }}
         >
-            {props.title}
+          {props.title}
         </text>
         <ColourDrop colour={average} />
       </svg>
