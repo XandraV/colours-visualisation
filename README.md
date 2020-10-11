@@ -26,7 +26,7 @@ Clone the master branch and then run following scripts in the project directory:
 | Description | Link     |
 | :------------- | :------------- |
 | React - JavaScript library for building user interfaces            | [create-react-app](https://github.com/facebook/create-react-app)          |
-| D3.js - Data visualisation library  | [D3.js](https://d3js.
+| D3.js - Data visualisation library  | [D3.js](https://d3js.org) |
 
 ## Created with create-react-app
 
