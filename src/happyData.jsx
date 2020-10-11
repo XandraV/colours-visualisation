@@ -18,6 +18,7 @@ export const happyData = [
     ],
     label: "Creativity",
     month: "4",
+    category: "happy",
     population: [2328, 18, 324, 2427, 2454, 2402],
     rgb: [
       [85, 153, 189],
@@ -47,6 +48,7 @@ export const happyData = [
     ],
     label: "Different",
     month: "4",
+    category: "happy",
     population: [5730, 6, 5632, 106, 562, 4526],
     rgb: [
       [208, 125, 13],
@@ -77,6 +79,7 @@ export const happyData = [
 
     label: "Peaceful",
     month: "7",
+    category: "happy",
     population: [1586, 193, 3104, 122, 918, 202],
     rgb: [
       [194, 29, 34],
@@ -99,6 +102,7 @@ export const happyData = [
     hue: [32, 359, 37, 221, 359, 235],
     label: "Beginning",
     month: "3",
+    category: "happy",
     population: [3161, 33, 3, 1578, 0, 3966],
     rgb: [
       [204, 120, 27],

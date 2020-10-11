@@ -11,6 +11,7 @@ export const calmData = [
     hue: [193, 195, 213, 211, 191, 211],
     label: "Sinking",
     month: "3",
+    category: "calm",
     population: [3269, 10, 14, 159, 201, 153],
     rgb: [
       [46, 160, 190],
@@ -40,6 +41,7 @@ export const calmData = [
     ],
     label: "Drowning",
     month: "2",
+    category: "calm",
     population: [2877, 771, 1827, 2960, 582, 2907],
     rgb: [
       [180, 95, 63],
@@ -69,6 +71,7 @@ export const calmData = [
     ],
     label: "November",
     month: "9",
+    category: "calm",
     population: [3371, 159, 1907, 1, 3825, 3210],
     rgb: [
       [47, 137, 197],
@@ -98,6 +101,7 @@ export const calmData = [
     ],
     label: "Grey",
     month: "9",
+    category: "calm",
     population: [810, 1093, 76, 17, 4085, 1369],
     rgb: [
       [187, 120, 75],

@@ -7,7 +7,7 @@ import BubbleLineChart from "./BubbleLineChart";
 import getRGBData from "./getRGBData";
 
 function App() {
-  //load data for circular bubble chart
+
   const happy = getRGBData(happyData);
   const happyGroupColours = happy[0];
   const happyGroupPopulation = happy[1];
@@ -27,7 +27,7 @@ function App() {
   );
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", fontFamily: 'Libre Baskerville, serif' }}>
       <div>
         <span>
           <BubbleCircleChart

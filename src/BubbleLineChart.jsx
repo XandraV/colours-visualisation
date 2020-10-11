@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as d3 from "d3";
 import chroma from "chroma-js";
 import styled from "styled-components/macro";
@@ -18,6 +18,7 @@ const BubbleWrapper = styled.div`
 `;
 
 const BubbleLineChart = (props) => {
+  const [hovered, setHovered] = useState("");
   const svgHeight = 230;
   const svgWidth = props.svgWidth;
   const xScale = d3
@@ -41,12 +42,12 @@ const BubbleLineChart = (props) => {
         <path
           d={[
             "M",
-            -10,
+            -30,
             svgHeight + 10,
             "h",
             0,
             "H",
-            svgWidth + 10,
+            svgWidth + 30,
             "v",
             0,
           ].join(" ")}
@@ -54,36 +55,62 @@ const BubbleLineChart = (props) => {
           strokeWidth="0.1rem"
         />
         {xScale.ticks(props.paintings.length).map((value, idx) => {
-          console.log(idx);
           return (
-            <g
-              key={value}
-              transform={`translate(${xScale(value)},${svgHeight + 10})`}
-            >
-              <line y1="-10" y2="5" stroke="#e6e6e9" />
-              {/* draw vertical line before the first painting of each months */}
-              {[0, 1, 3, 6, 8, 9].includes(idx) ? (
-                <line
-                  x1={40}
-                  x2={40}
-                  y1={`${-svgHeight - 30}`}
-                  y2="60"
-                  stroke="#e6e6e9"
-                />
-              ) : (
-                ""
-              )}
-              <text
+            <g key={value}>
+              <g
                 key={value}
-                style={{
-                  fontSize: "10px",
-                  textAnchor: "middle",
-                  transform: "translateY(20px)",
-                  fill: "grey",
-                }}
+                transform={`translate(${xScale(value)},${svgHeight + 10})`}
               >
-                {props.paintings[idx].label}
-              </text>
+                <rect
+                  width="81px"
+                  height={300}
+                  rx="5"
+                  ry="5"
+                  fill={hovered === idx ? "lightgrey" : "transparent"}
+                  stroke={hovered === idx ? "white" : "transparent"}
+                  strokeWidth={2}
+                  opacity={0.5}
+                  transform={`translate(-41,-270)`}
+                  onMouseOver={() => setHovered(idx)}
+                  onMouseLeave={() => setHovered("")}
+                />
+                <text
+                  key={value}
+                  fill={hovered === idx ? "grey" : "transparent"}
+                  style={{
+                    fontSize: "12px",
+                    textAnchor: "middle",
+                    transform: "translate(-28px, -114px) rotate(-90deg)",
+                  }}
+                >
+                  {props.paintings[idx].category}
+                </text>
+
+                <line y1="-10" y2="5" stroke="#e6e6e9" />
+                {/* draw vertical line before the first painting of each months */}
+                {[0, 1, 3, 6, 8, 9].includes(idx) ? (
+                  <line
+                    x1={40}
+                    x2={40}
+                    y1={`${-svgHeight - 30}`}
+                    y2="60"
+                    stroke="#e6e6e9"
+                  />
+                ) : (
+                  ""
+                )}
+                <text
+                  key={value}
+                  style={{
+                    fontSize: "12px",
+                    textAnchor: "middle",
+                    transform: "translateY(20px)",
+                    fill: "grey",
+                  }}
+                >
+                  {props.paintings[idx].label}
+                </text>
+              </g>
             </g>
           );
         })}
@@ -92,6 +119,7 @@ const BubbleLineChart = (props) => {
             <text
               key={`${idx}-month`}
               style={{
+                fontWeight: 700,
                 fontSize: "1rem",
                 textAnchor: "middle",
                 transform: "translateY(25px)",
@@ -103,6 +131,7 @@ const BubbleLineChart = (props) => {
           </g>
         ))}
         {props.paintings.map((p, i) => {
+          console.log(p.category);
           return p.rgb.map((col, colIdx) => {
             return (
               <circle

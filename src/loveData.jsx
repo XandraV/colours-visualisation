@@ -18,6 +18,7 @@ export const loveData = [
     ],
     label: "Rising",
     month: "1",
+    category: "love",
     population: [77, 2176, 2195, 2104, 2197, 252],
     rgb: [
       [228, 117, 18],
@@ -47,6 +48,7 @@ export const loveData = [
     ],
     label: "In love",
     month: "4",
+    category: "love",
     population: [4387, 955, 3885, 3859, 3301, 1559],
     rgb: [
       [190, 47, 76],
@@ -76,6 +78,7 @@ export const loveData = [
     ],
     label: "Needy",
     month: "6",
+    category: "love",
     population: [3488, 3738, 2762, 3269, 629, 1051],
     rgb: [
       [197, 34, 81],
@@ -105,6 +108,7 @@ export const loveData = [
     ],
     label: "Flaw",
     month: "6",
+    category: "love",
     population: [2643, 2225, 951, 2665, 315, 29],
     rgb: [
       [195, 102, 19],
