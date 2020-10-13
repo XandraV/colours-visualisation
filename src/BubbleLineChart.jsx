@@ -120,7 +120,7 @@ const BubbleLineChart = (props) => {
               key={`${idx}-month`}
               style={{
                 fontWeight: 700,
-                fontSize: "1rem",
+                fontSize: "0.9rem",
                 textAnchor: "middle",
                 transform: "translateY(25px)",
                 fill: "grey",

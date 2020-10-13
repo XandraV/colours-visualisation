@@ -50,7 +50,7 @@ const BubbleCircleChart = (props) => {
           x={size / 2}
           y={size / 1.8}
           style={{
-            fontSize: "2rem",
+            fontSize: "1.7rem",
             textAnchor: "middle",
             fill: "grey",
           }}
